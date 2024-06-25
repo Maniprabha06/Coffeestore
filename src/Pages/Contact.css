@@ -1,0 +1,31 @@
+/* Contact.css */
+
+.contact-card {
+  margin-top: 20px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #fff; /* White background for the card */
+}
+
+.contact-card .card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.contact-card .card-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+.contact-container {
+  background-color: #f8f9fa; /* Use the current background color of the container */
+  padding: 50px 0;
+}
+
+.contact-info {
+  font-size: 1.2rem;
+  color: #212529;
+  margin-bottom: 20px;
+}

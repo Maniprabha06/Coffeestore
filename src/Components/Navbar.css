@@ -1,0 +1,62 @@
+/* Navbar.css */
+
+.custom-navbar {
+  background-color: #333;
+  align-items: center;
+}
+
+.navbar-brand {
+  color: white;
+  margin-right: 1rem;
+  font-size: 1.5rem;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-links li {
+  margin: 0 1rem;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+}
+
+.navbar-links a:hover {
+  color: lightgray;
+}
+
+.custom-button {
+  padding: 0.25rem 0.75rem; /* Adjust padding to control button size */
+  margin: 0;
+  line-height: 1.5; 
+}
+
+.custom-navbar .nav-link {
+  padding: 0; /* Remove padding from nav link to prevent extra height */
+}
+
+@media (max-width: 768px) {
+  .custom-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-links li {
+    margin: 0.5rem 0;
+  }
+}

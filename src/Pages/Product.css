@@ -1,0 +1,51 @@
+/* Product.css */
+
+.product-page {
+  padding: 20px;
+  padding-top: 50px;
+   /* Adjust padding as needed */
+}
+
+.product-card {
+  transition: transform 0.2s ease-in-out;
+  height: 100%; /* Ensure the card fills its container height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure content inside card is spaced evenly */
+  border: 1px solid #ddd; /* Example border styling */
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-img {
+  height: 200px; /* Adjust image height as needed */
+  object-fit: cover;
+}
+
+.product-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.product-description {
+  flex-grow: 1; /* Allow description to grow and take up remaining space */
+  overflow: hidden;
+  margin-bottom: 10px; /* Add margin bottom for separation */
+}
+
+.product-price {
+  font-weight: bold;
+  color: #530606; /* Bootstrap primary color */
+  margin-top: auto; /* Push price to the bottom */
+}
+
+#product-button {
+  font-weight: bold;
+  background-color: #530606; /* Align button to the end of the card */
+}
+
+.justify-content-center{
+  padding-top: 50px;
+}

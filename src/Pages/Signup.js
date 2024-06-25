@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Card, CardContent, TextField, Button, Typography } from '@mui/material';
+import axios from 'axios';
 import './Signup.css'; // Import custom CSS for styling
 
 const Signup = () => {
@@ -11,17 +12,25 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-    // Handle signup logic here
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Date of Birth:', dateOfBirth);
-    console.log('Password:', password);
+    try {
+      const response = await axios.post('http://localhost:5000/signup', {
+        name,
+        email,
+        dateOfBirth,
+        password
+      });
+      console.log(response.data);
+      alert('Signup successful');
+    } catch (error) {
+      console.error(error);
+      alert('Signup failed');
+    }
   };
 
   return (

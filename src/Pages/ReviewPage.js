@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
+// src/ReviewPage.js
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './ReviewPage.css';
 
 const ReviewPage = () => {
-  // State to hold the current review being written
   const [reviewText, setReviewText] = useState('');
-  
-  // State to hold existing reviews
-  const [reviews, setReviews] = useState([
-    "Great product, highly recommend!",
-    "Fast shipping, good customer service."
-  ]);
+  const [reviews, setReviews] = useState([]);
 
-  // Function to handle submission of review
+  useEffect(() => {
+    // Fetch existing reviews from the backend
+    axios.get('http://localhost:5000/reviews')
+      .then(response => setReviews(response.data))
+      .catch(error => console.error('Error fetching reviews:', error));
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (reviewText.trim() === '') return; // Prevent empty reviews
-    
-    // Add the new review to the reviews list
-    setReviews([...reviews, reviewText]);
 
-    // Clear the textarea after submitting
-    setReviewText('');
-  }
+    // Send the new review to the backend
+    axios.post('http://localhost:5000/reviews', { text: reviewText })
+      .then(response => {
+        setReviews([...reviews, response.data]); // Add the new review to the reviews list
+        setReviewText(''); // Clear the textarea after submitting
+      })
+      .catch(error => console.error('Error submitting review:', error));
+  };
 
   return (
     <div className="review-page">
@@ -46,13 +51,13 @@ const ReviewPage = () => {
         ) : (
           <ul>
             {reviews.map((review, index) => (
-              <li key={index}>{review}</li>
+              <li key={index}>{review.text}</li>
             ))}
           </ul>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default ReviewPage;

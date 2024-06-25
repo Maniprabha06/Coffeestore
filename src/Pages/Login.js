@@ -2,17 +2,30 @@
 
 import React, { useState } from 'react';
 import { Card, CardContent, TextField, Button, Link, Typography } from '@mui/material';
+import axios from 'axios';
 import './Login.css'; // Import custom CSS for styling
+import {useNavigate} from 'react-router-dom';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleSubmit = (event) => {
+  const Navigate=useNavigate();
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle login logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
+    try {
+      const response = await axios.post('http://localhost:5000/login', {
+        email,
+        password
+      });
+      if(response.status==200){
+        Navigate('/');
+      }
+      console.log(response.data);
+      alert(response.data.message);
+    } catch (error) {
+      console.error(error);
+      alert('Login failed');
+    }
   };
 
   return (
@@ -24,12 +37,12 @@ const Login = () => {
           </Typography>
           <form onSubmit={handleSubmit}>
             <TextField
-              label="Username"
+              label="Email"
               variant="outlined"
               margin="normal"
               fullWidth
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               label="Password"
